@@ -1,4 +1,3 @@
-[![Java CI with Maven](https://github.com/Temzor/job4j_grabber/actions/workflows/maven.yml/badge.svg)](https://github.com/Temzor/job4j_grabber/actions/workflows/maven.yml)
 [![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/master/graph/badge.svg)](https://codecov.io/gh/Temzor/job4j_grabber)
 
 ## Агрегатор Java вакансий.
