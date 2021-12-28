@@ -1,10 +1,6 @@
 package ru.vtb.oopstart.homework.animals;
 
-public class HomeCat {
-    String name;
-    String color;
-    int age;
-
+public class HomeCat  extends Animals {
     public HomeCat(String name, String color, int age) {
         this.name = name;
         this.color = color;
