@@ -1,6 +1,4 @@
-[![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/master/graph/badge.svg)](https://codecov.io/gh/Temzor/job4j_grabber)
-[![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/main/graph/badge.svg?token=JL7KMDZSLM)](https://codecov.io/gh/Temzor/job4j_grabber)
-
+[![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/master/graph/badge.svg?token=jhCpwXsgLh)](https://codecov.io/gh/Temzor/job4j_grabber)
 ## Агрегатор Java вакансий.
 
 ### Описание:
