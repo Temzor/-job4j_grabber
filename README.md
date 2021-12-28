@@ -1,4 +1,5 @@
 [![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/master/graph/badge.svg?token=jhCpwXsgLh)](https://codecov.io/gh/Temzor/job4j_grabber)
+[![Java CI with Maven](https://github.com/Temzor/job4j_grabber/actions/workflows/maven.yml/badge.svg)](https://github.com/Temzor/job4j_grabber/actions/workflows/maven.yml)
 
 ### Описание:
 Приложение парсит Java-вакансии с сайта sql.ru в базу данных PostgreSql.
