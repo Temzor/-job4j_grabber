@@ -1,5 +1,4 @@
-[![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/master/graph/badge.svg?token=jhCpwXsgLh)](https://codecov.io/gh/Temzor/job4j_grabber)
-## Агрегатор Java вакансий.
+[![codecov](https://codecov.io/gh/Temzor/job4j_grabber/branch/temzor/graph/badge.svg?token=jhCpwXsgLh)](https://codecov.io/gh/Temzor/job4j_grabber)
 
 ### Описание:
 Приложение парсит Java-вакансии с сайта sql.ru в базу данных PostgreSql.
