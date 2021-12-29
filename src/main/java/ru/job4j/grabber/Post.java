@@ -20,7 +20,12 @@ public class Post {
         this.createDate = createDate;
     }
 
-
+    public Post(String title, String href, String description, LocalDateTime createDate) {
+        this.title = title;
+        this.href = href;
+        this.description = description;
+        this.createDate = createDate;
+    }
 
     public int getId() {
         return id;

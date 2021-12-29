@@ -23,5 +23,15 @@ public class SqlRuParse {
             }
         }
     }
-
+    public static Post getPost(String url) throws Exception {
+        Document doc = Jsoup.connect(url).get();
+        Elements header = doc.select(".messageHeader");
+        Elements message = doc.select(".msgBody");
+        Elements date = doc.select(".msgFooter");
+        SqlRuDateTimeParser lastDateTime = new SqlRuDateTimeParser();
+        return new Post(header.get(0).text(),
+                url,
+                message.get(1).text(),
+                lastDateTime.parse(date.get(0).text().substring(0, date.get(0).text().indexOf("[")).trim()));
+    }
 }
