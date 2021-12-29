@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 
 public class Post {
 
-    private final int id;
+    private int id;
     private final String title;
     private final String href;
     private final String description;
@@ -14,6 +14,13 @@ public class Post {
 
     public Post(int id, String title, String href, String description, LocalDateTime createDate) {
         this.id = id;
+        this.title = title;
+        this.href = href;
+        this.description = description;
+        this.createDate = createDate;
+    }
+
+    public Post(String title, String href, String description, LocalDateTime createDate) {
         this.title = title;
         this.href = href;
         this.description = description;

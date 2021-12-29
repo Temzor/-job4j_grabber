@@ -4,6 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.job4j.grabber.Post;
+import ru.job4j.grabber.utils.SqlRuDateTimeParser;
 
 public class SqlRuParse {
     public static void main(String[] args) throws Exception {
@@ -20,5 +22,16 @@ public class SqlRuParse {
                     System.out.println(post.child(0).attr("href"));
             }
         }
+    }
+    public static Post getPost(String url) throws Exception {
+        Document doc = Jsoup.connect(url).get();
+        Elements header = doc.select(".messageHeader");
+        Elements message = doc.select(".msgBody");
+        Elements date = doc.select(".msgFooter");
+        SqlRuDateTimeParser lastDateTime = new SqlRuDateTimeParser();
+        return new Post(header.get(0).text(),
+                url,
+                message.get(1).text(),
+                lastDateTime.parse(date.get(0).text().substring(0, date.get(0).text().indexOf("[")).trim()));
     }
 }
