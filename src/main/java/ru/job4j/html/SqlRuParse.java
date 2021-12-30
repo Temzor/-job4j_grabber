@@ -7,7 +7,6 @@ import org.jsoup.select.Elements;
 import ru.job4j.grabber.Parse;
 import ru.job4j.grabber.Post;
 import ru.job4j.grabber.utils.DateTimeParser;
-import ru.job4j.grabber.utils.SqlRuDateTimeParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,14 +22,17 @@ public class SqlRuParse implements Parse {
     @Override
     public List<Post> list(String url) throws IOException {
         List<Post> posts = new ArrayList<>();
-        Document doc = Jsoup.connect(url).get();
-        Elements row = doc.select(".postslisttopic");
-        for (Element post : row) {
-            Element parent = post.parent();
-            assert parent != null;
-            System.out.print(parent.children().get(5).text() + " ");
-            System.out.println(post.child(0).text());
-            System.out.println(post.child(0).attr("href"));
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(url);
+            Document doc = Jsoup.connect(url + i).get();
+            Elements row = doc.select(".postslisttopic");
+            for (Element post : row) {
+                assert post.parent() != null;
+                Element child = post.parent().child(1);
+                if (!child.text().toLowerCase().contains("javascript")) {
+                    posts.add(detail(child.getAllElements().attr("href")));
+                }
+            }
         }
         return posts;
     }
@@ -41,10 +43,10 @@ public class SqlRuParse implements Parse {
             Elements header = doc.select(".messageHeader");
             Elements message = doc.select(".msgBody");
             Elements date = doc.select(".msgFooter");
-            SqlRuDateTimeParser lastDateTime = new SqlRuDateTimeParser();
             return new Post(header.get(0).text(),
                     url,
                     message.get(1).text(),
-                    lastDateTime.parse(date.get(0).text().substring(0, date.get(0).text().indexOf("[")).trim()));
+                    dateTimeParser
+                            .parse(date.get(0).text().substring(0, date.get(0).text().indexOf("[")).trim()));
         }
 }
