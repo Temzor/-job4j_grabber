@@ -29,7 +29,7 @@ public class SqlRuParse implements Parse {
             for (Element post : row) {
                 assert post.parent() != null;
                 Element child = post.parent().child(1);
-                if (!child.text().toLowerCase().contains("javascript")) {
+                if (!child.text().toLowerCase().contains("javascript") && child.text().toLowerCase().contains("java")) {
                     posts.add(detail(child.getAllElements().attr("href")));
                 }
             }
