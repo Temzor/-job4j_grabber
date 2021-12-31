@@ -7,10 +7,10 @@ import java.util.StringJoiner;
 public class Post {
 
     private int id;
-    private final String title;
-    private final String href;
-    private final String description;
-    private final LocalDateTime createDate;
+    private String title;
+    private String href;
+    private String description;
+    private LocalDateTime createDate;
 
     public Post(int id, String title, String href, String description, LocalDateTime createDate) {
         this.id = id;
@@ -25,6 +25,10 @@ public class Post {
         this.href = href;
         this.description = description;
         this.createDate = createDate;
+    }
+
+    public Post() {
+
     }
 
     public int getId() {
@@ -45,6 +49,26 @@ public class Post {
 
     public LocalDateTime getCreateDate() {
         return createDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
     }
 
     @Override

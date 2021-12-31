@@ -37,7 +37,7 @@
         <profile>
             <id>production</id>
             <properties>
-                <db.url>jdbc:postgresql://127.0.0.1:5433/tracker</db.url>
+                <db.url>jdbc:postgresql://127.0.0.1:5433/grabber</db.url>
                 <db.username>postgres</db.username>
                 <db.password>postgres</db.password>
                 <db.driver>org.postgresql.Driver</db.driver>
