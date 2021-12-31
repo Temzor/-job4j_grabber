@@ -1,9 +1,7 @@
-CREATE TABLE "public"."post" (
-  "id" int4 NOT NULL DEFAULT nextval('post_id_seq'::regclass),
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "text" text COLLATE "pg_catalog"."default" NOT NULL,
-  "link" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "created" timestamp(6),
-  CONSTRAINT "post_pkey" PRIMARY KEY ("id"),
-  CONSTRAINT "post_link_key" UNIQUE ("link")
+CREATE TABLE IF NOT EXISTS post (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+text TEXT NOT NULL,
+link VARCHAR(255) UNIQUE NOT NULL,
+created TIMESTAMP
 );
