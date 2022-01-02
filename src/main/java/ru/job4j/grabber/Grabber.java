@@ -6,7 +6,9 @@ import ru.job4j.grabber.utils.SqlRuDateTimeParser;
 import ru.job4j.html.SqlRuParse;
 
 import java.io.*;
-import java.sql.SQLException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import static org.quartz.JobBuilder.newJob;
@@ -14,11 +16,11 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 public class Grabber implements Grab {
-    private final Properties configPostgreSql = new Properties();
-    private final Properties configRabbitQuartz = new Properties();
+    private final Properties config = new Properties();
+
 
     public Store store() {
-        return new PsqlStore(configPostgreSql);
+        return new PsqlStore(config);
     }
 
     public Scheduler scheduler() throws SchedulerException {
@@ -27,19 +29,13 @@ public class Grabber implements Grab {
         return scheduler;
     }
 
-    public void configPostgreSql() throws IOException {
+    public void config() throws IOException {
         try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream(
                 "app.properties")) {
-            configPostgreSql.load(in);
+            config.load(in);
         }
     }
 
-    public void configRabbitQuartz() throws IOException {
-        try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream(
-                "rabbit.properties")) {
-            configRabbitQuartz.load(in);
-        }
-    }
 
     @Override
     public void init(Parse parse, Store store, Scheduler scheduler) throws SchedulerException {
@@ -50,7 +46,7 @@ public class Grabber implements Grab {
                 .usingJobData(data)
                 .build();
         SimpleScheduleBuilder times = simpleSchedule()
-                .withIntervalInSeconds(Integer.parseInt(configRabbitQuartz.getProperty("time")))
+                .withIntervalInSeconds(Integer.parseInt(config.getProperty("time")))
                 .repeatForever();
         Trigger trigger = newTrigger()
                 .startNow()
@@ -77,8 +73,7 @@ public class Grabber implements Grab {
 
     public static void main(String[] args) throws Exception {
         Grabber grab = new Grabber();
-        grab.configPostgreSql();
-        grab.configRabbitQuartz();
+        grab.config();
         Scheduler scheduler = grab.scheduler();
         Store store = grab.store();
         grab.init(new SqlRuParse(new SqlRuDateTimeParser()), store, scheduler);
