@@ -11,7 +11,8 @@ GROUP BY cm.name
 HAVING COUNT(cm.name) = (
 		SELECT COUNT(company_id)
 		FROM person
-		GROUP BY company_id
+		GROUP BY company_id 
+	  ORDER BY company_id DESC
 		LIMIT 1
 );
 
